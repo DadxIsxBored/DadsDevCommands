@@ -113,7 +113,7 @@ public partial class ParameterInfo
       if (LocationDataCache != ZoneSystem.instance.m_locations)
         LocationIdsCache = null;
       if (LocationIdsCache == null)
-        LocationIdsCache = [.. ZoneSystem.instance.m_locations.Where(Helper.IsValid).Select(l => l.m_prefab.Name).Distinct()];
+        LocationIdsCache = [.. ZoneSystem.instance.m_locations.Select(Helper.GetLocationName).Where(name => !string.IsNullOrEmpty(name)).Select(name => name!).Distinct()];
       LocationDataCache = ZoneSystem.instance.m_locations;
       return LocationIdsCache;
     }

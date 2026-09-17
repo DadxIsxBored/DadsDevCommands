@@ -1,6 +1,7 @@
 using SoftReferenceableAssets;
 using Splatform;
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using UnityEngine;
@@ -9,7 +10,19 @@ namespace ServerDevcommands;
 ///<summary>Contains functions for parsing arguments, etc.</summary>
 public abstract class Helper
 {
-  public static bool IsValid(ZoneSystem.ZoneLocation loc) => loc != null && loc.m_prefab != null && (loc.m_prefab.IsValid || loc.m_prefab.Name != null);
+  public static bool IsValid(ZoneSystem.ZoneLocation loc) => GetLocationName(loc) != null;
+  public static string? GetLocationName(ZoneSystem.ZoneLocation loc)
+  {
+    if (loc == null || loc.m_prefab == null || !loc.m_prefab.IsValid) return null;
+    try
+    {
+      return loc.m_prefab.Name;
+    }
+    catch (KeyNotFoundException)
+    {
+      return null;
+    }
+  }
   public static void AddMessage(Terminal context, string message, bool priority = false)
   {
     if (context == Console.instance || Settings.ChatOutput)

@@ -13,7 +13,7 @@ public class DadsDevCommandsPlugin : BaseUnityPlugin
 {
   public const string GUID = "com.dadisbored.dadsdevcommands";
   public const string NAME = "DadsDevCommands";
-  public const string VERSION = "1.0.0";
+  public const string VERSION = "1.0.1";
   public const string COMFY_GIZMO_GUID = "bruce.valheim.comfymods.gizmo";
   public const string RELOADED_GIZMO_GUID = "m3to.mods.GizmoReloaded";
   public void Awake()
